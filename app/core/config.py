@@ -30,6 +30,9 @@ class Settings:
     # Data dir (ratelimit db)
     data_dir: Path = Path(os.getenv("DATA_DIR", "/data"))
 
+    # Proxy (global default, e.g. socks5://host:port or http://host:port)
+    proxy: str = os.getenv("PROXY", "")
+
     # Screenshot defaults
     default_width: int = int(os.getenv("DEFAULT_WIDTH", "1280"))
     default_height: int = int(os.getenv("DEFAULT_HEIGHT", "720"))

@@ -65,6 +65,7 @@ async def screenshot_get(
     quality: int = 80,
     wait_ms: int = 0,
     wait_selector: str | None = None,
+    proxy: str | None = None,
 ):
     req = ScreenshotRequest(
         url=url,
@@ -75,6 +76,7 @@ async def screenshot_get(
         quality=quality,
         wait_ms=wait_ms,
         wait_selector=wait_selector,
+        proxy=proxy,
     )
     return await _take_screenshot(req, request)
 
@@ -117,6 +119,7 @@ async def _take_screenshot(req: ScreenshotRequest, http_request: Request) -> Res
             wait_selector=req.wait_selector,
             img_format=req.format.value,
             quality=req.quality,
+            proxy=req.proxy,
         )
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Screenshot failed: {str(e)}")

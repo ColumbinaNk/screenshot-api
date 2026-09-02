@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
+## [1.1.0] — 2026-09-02
+
+### Added
+- Proxy support — global via `PROXY` env var, per-request via `proxy` param
+- Supports `socks5://`, `http://`, `https://` proxy protocols
+
 ## [1.0.0] — 2026-09-02
 
 ### Added

@@ -67,6 +67,7 @@ class BrowserEngine:
         wait_selector: Optional[str] = None,
         img_format: str = "png",
         quality: int = 80,
+        proxy: Optional[str] = None,
     ) -> tuple[bytes, float]:
         """
         Take a screenshot of the given URL.
@@ -80,9 +81,15 @@ class BrowserEngine:
         start = time.monotonic()
 
         try:
-            context = await self._browser.new_context(
-                viewport={"width": width, "height": height},
-            )
+            # Resolve proxy: per-request override > global env
+            proxy_url = proxy or settings.proxy or None
+            context_kwargs: dict = {
+                "viewport": {"width": width, "height": height},
+            }
+            if proxy_url:
+                context_kwargs["proxy"] = {"server": proxy_url}
+
+            context = await self._browser.new_context(**context_kwargs)
             page = await context.new_page()
 
             # Block media/fonts to speed up loading

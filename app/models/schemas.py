@@ -22,6 +22,7 @@ class ScreenshotRequest(BaseModel):
     quality: int = Field(default=80, ge=1, le=100, description="JPEG quality (1-100)")
     wait_ms: int = Field(default=0, ge=0, le=30000, description="Wait before capture (ms)")
     wait_selector: Optional[str] = Field(default=None, description="Wait for CSS selector")
+    proxy: Optional[str] = Field(default=None, description="Proxy for this request (overrides global PROXY env)")
 
 
 class ScreenshotResponse(BaseModel):
