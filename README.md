@@ -29,6 +29,8 @@ curl -o screenshot.png "http://localhost:8000/v1/screenshot?url=https://example.
 open http://localhost:8000/docs
 ```
 
+> ⚠️ **Security Notice:** By default, no API key is set (anyone can use your API). Set `API_KEY` in `.env` before exposing to public internet.
+
 ## API
 
 ### `POST /v1/screenshot`
